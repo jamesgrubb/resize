@@ -1,0 +1,97 @@
+.tracklist {
+	--loader: 1;
+	background-image: linear-gradient(
+		to right,
+		#496480 calc(100% * var(--loader)),
+		transparent 0
+	);
+	background-repeat: no-repeat;
+	background-size: 100% 0.6em;
+	border-radius: calc(var(--s-3) * 1em);
+	padding: calc(var(--s-1) * 1em + 0.6em) calc(var(--s-1) * 1em);
+	margin: calc(var(--s2) * 1em) calc(var(--s2) * 1em) 0 0;
+	width: 70%;
+	display: flex;
+	flex-basis: 60%;
+	flex-direction: column;
+	z-index: 1;
+	& > * + * {
+		margin-top: calc(var(--s-1) * 1em);
+	}
+}
+
+.track {
+	cursor: pointer;
+	padding: calc(var(--s1) * 1em);
+	display: flex;
+	align-items: center;
+	color: #496480;
+	border: 1px solid #496480;
+	border-radius: calc(var(--s-1) * 1px);
+	font-size: calc(var(--s1) * 1rem);
+	> :last-child {
+		margin-left: 1em;
+	}
+	&:hover :active {
+		color: #328cfc;
+		border-color: currentColor;
+	}
+	&:hover .track__button,
+	:active .track__button {
+		animation: play 0.3s ease;
+	}
+}
+
+.button {
+	flex-grow: 0;
+	color: currentColor;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background: transparent;
+	width: calc(var(--s2) * 1em);
+	height: calc(var(--s2) * 1em);
+	font-size: 1em;
+	overflow: hidden;
+}
+
+.track__button {
+	overflow: hidden;
+}
+
+@keyframes play {
+	0%,
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	50% {
+		transform: translateX(200%);
+	}
+	51% {
+		transform: translateX(-200%);
+		opacity: 0;
+	}
+}
+
+@media (max-width: 500px) {
+	.tracklist {
+		width: 100%;
+		flex-direction: column;
+		flex-basis: 100%;
+		margin-right: 0;
+	}
+	.track {
+		&:hover .track__button,
+		:active .track__button {
+			animation: none;
+		}
+	}
+	.track__button {
+		overflow: auto;
+	}
+	.button,
+	.track__button {
+		overflow: unset;
+	}
+}

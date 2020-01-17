@@ -1,11 +1,8 @@
-import { useContext, useRef, useEffect } from 'react'
-// import { Buffers, Players } from 'tone'
+import { useContext } from 'react'
 import { MusicPlayerContext } from './MusicPayerContext'
 
 const useMusicPlayer = () => {
 	const [state, setState] = useContext(MusicPlayerContext)
-
-	const players = useRef()
 
 	// Play a specific track
 	function playTrack(index) {

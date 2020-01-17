@@ -9,6 +9,9 @@ const useMusicPlayer = () => {
 		if (index === state.currentTrackIndex) {
 			togglePlay()
 		} else {
+			state.audioPlayer.pause()
+			state.audioPlayer = new Audio(state.tracks[index].file)
+			state.audioPlayer.play()
 			setState((state) => ({
 				...state,
 				currentTrackIndex: index,
@@ -19,6 +22,11 @@ const useMusicPlayer = () => {
 
 	// Toggle play or pause
 	function togglePlay() {
+		if (state.isPlaying) {
+			state.audioPlayer.pause()
+		} else {
+			state.audioPlayer.play()
+		}
 		setState((state) => ({ ...state, isPlaying: !state.isPlaying }))
 	}
 	return {
